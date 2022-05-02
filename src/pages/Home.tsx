@@ -1,3 +1,6 @@
+// useContext - recuperar o valor de um contexto
+import { useNavigate } from 'react-router-dom'
+
 // Muito comum no mundo front-end importar imagens, por causa do webpack 
 // Ele é um Module Bundler - pega a extenção do arquivo com algumas predefinições para ser entendido no JS
 import illustrationImg from '../assets/images/illustration.svg';
@@ -5,9 +8,25 @@ import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
 import { Button } from '../components/Button';
 
+
 import '../styles/auth.scss'
+import { AuthContext } from '../App';
+import { useContext } from 'react';
 
 export function Home() {
+    // toda função que começa com "use", chamamos de hook no react
+    // precisa estar dentro do componente
+    const navigate = useNavigate();
+    const { signInWithGoogle, user } = useContext(AuthContext);
+
+    async function handleCreateRoom() {
+        if (!user) {
+            await signInWithGoogle()
+        }
+
+        navigate('/rooms/new')
+    }
+
     return (
         <div id='page-auth'>
             <aside>
@@ -19,7 +38,7 @@ export function Home() {
             <main>
                 <div className="main-content">
                     <img src={logoImg} alt="Letmeask logo"/>
-                    <button className="create-room">
+                    <button onClick={handleCreateRoom} className="create-room">
                         <img src={googleIconImg} alt="Google Logo" />
                         Cria sua sala com o Google
                     </button>

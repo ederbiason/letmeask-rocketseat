@@ -1,3 +1,8 @@
+
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../App';
+
 // Muito comum no mundo front-end importar imagens, por causa do webpack 
 // Ele é um Module Bundler - pega a extenção do arquivo com algumas predefinições para ser entendido no JS
 import illustrationImg from '../assets/images/illustration.svg';
@@ -7,6 +12,8 @@ import { Button } from '../components/Button';
 import '../styles/auth.scss'
 
 export function NewRoom() {
+    const { user } = useContext(AuthContext)
+
     return (
         <div id='page-auth'>
             <aside>
@@ -18,6 +25,7 @@ export function NewRoom() {
             <main>
                 <div className="main-content">
                     <img src={logoImg} alt="Letmeask logo"/>
+                    <h1>{user?.name}</h1>
                     <h2>Criar uma nova sala</h2>
                     <form>
                         <input
@@ -29,7 +37,7 @@ export function NewRoom() {
                         </Button>
                     </form>
                     <p>
-                        Quer entrar em uma sala existente? <a href="#">Clique Aqui</a>
+                        Quer entrar em uma sala existente? <Link to="/">Clique Aqui</Link>
                     </p>
                 </div>
             </main>
