@@ -1,7 +1,6 @@
-
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../App';
+import { AuthContext } from '../contexts/AuthContext';
 
 // Muito comum no mundo front-end importar imagens, por causa do webpack 
 // Ele é um Module Bundler - pega a extenção do arquivo com algumas predefinições para ser entendido no JS

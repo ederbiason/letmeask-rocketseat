@@ -10,7 +10,7 @@ import { Button } from '../components/Button';
 
 
 import '../styles/auth.scss'
-import { AuthContext } from '../App';
+import { AuthContext } from '../contexts/AuthContext';
 import { useContext } from 'react';
 
 export function Home() {
