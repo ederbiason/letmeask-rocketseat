@@ -10,14 +10,13 @@ import { Button } from '../components/Button';
 
 
 import '../styles/auth.scss'
-import { AuthContext } from '../contexts/AuthContext';
-import { useContext } from 'react';
+import { useAuth } from '../hooks/useAuth';
 
 export function Home() {
     // toda função que começa com "use", chamamos de hook no react
     // precisa estar dentro do componente
     const navigate = useNavigate();
-    const { signInWithGoogle, user } = useContext(AuthContext);
+    const { user, signInWithGoogle } = useAuth();
 
     async function handleCreateRoom() {
         if (!user) {
