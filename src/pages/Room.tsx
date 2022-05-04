@@ -1,14 +1,25 @@
+import { useParams } from 'react-router-dom';
+
 import logoImg from '../assets/images/logo.svg'
 import { Button } from '../components/Button'
+import { RoomCode } from '../components/RoomCode';
 import '../styles/room.scss';
 
+type RoomParms = {
+    id: string;
+}
+
 export function Room() {
+    // parametro para a tipagem
+    const params = useParams<RoomParms>();
+    const roomId = params.id;
+
     return (
         <div id="page-room">
             <header>
                 <div className="content">
                     <img src={logoImg} alt="logo imagem"/>
-                    <div>codigo</div>
+                    <RoomCode code={roomId!}/>
                 </div>
             </header>
 
