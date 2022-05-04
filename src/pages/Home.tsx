@@ -40,6 +40,7 @@ export function Home() {
 
         if (!roomRef.exists()) {
             alert("Room does not exists")
+            setRoomCode('');
             return;
         }
 
