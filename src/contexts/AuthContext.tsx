@@ -20,7 +20,7 @@ type AuthContextProvierProps = {
     children: ReactNode;
 }
 
-// ('') - apenas o formato, no um objeto vazio
+// ('') - apenas o formato, no caso um objeto vazio
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvier(props: AuthContextProvierProps) {
