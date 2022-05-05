@@ -19,6 +19,13 @@
         margin-right: 8px;
     }
 
+    // quando esse button estiver isOutlined
+    &.outlined {
+        background: #fff;
+        border: 1px solid #835afd;
+        color: #835afd;
+    }
+
     // se o botão não estiver desabilitado, o hover funciona
     &:not(:disabled):hover {
         filter: brightness(0.9);
