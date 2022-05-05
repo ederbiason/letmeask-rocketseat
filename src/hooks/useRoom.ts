@@ -12,7 +12,7 @@ type QuestionType = {
     isAnswered: boolean;
     isHighlighted: boolean;
     likeCount: number;
-    hasLiked: boolean;
+    likeId: string | undefined;
 }
 
 // record- declarar tipagem de um objeto
@@ -59,7 +59,10 @@ export function useRoom(roomId: string) {
                     isAnswered: value.isAnswered,
                     likeCount: Object.values(value.likes ?? {}).length,
                     // some- vai tentar encontrar oq passarmos para ele dentro do () e retorna true ou false
-                    hasLiked: Object.values(value.likes ?? {}).some(like => like.authorId === user?.id)
+                    likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0],
+                    // ?.[0] -> se a chamada que ta antes nao retornar nada, nao tem como acessar a propriedade 0, entao ele deixa nulo
+
+
                 }
             })
 
