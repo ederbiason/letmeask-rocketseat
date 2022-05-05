@@ -1,5 +1,5 @@
 import '../styles/room.scss';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import deleteImg from '../assets/images/delete.svg'
 
@@ -22,7 +22,19 @@ export function AdminRoom() {
     const params = useParams<RoomParms>();
     const roomId = params.id;
 
+    const navigate = useNavigate()
+
     const { title, questions } = useRoom(roomId!)
+
+    // Função para encerrar sala
+    async function handleEndRoom() {
+        await database.ref(`rooms/${roomId}`).update({
+            endedAt: new Date(),
+        })
+
+        // Depois de encerrar a sala o user é enviado para a pagina Home
+        navigate('/')
+    }
 
     async function handleDeleteQuestion(questionId: string) {
         if (window.confirm('Tem certeza que deseja excluir esta pergunta?')) {
@@ -37,7 +49,7 @@ export function AdminRoom() {
                     <img src={logoImg} alt="logo imagem"/>
                     <div>
                         <RoomCode code={roomId!}/>
-                        <Button isOutlined>Encerrar Sala</Button>
+                        <Button isOutlined onClick={handleEndRoom}>Encerrar Sala</Button>
                     </div>
                 </div>
             </header>
