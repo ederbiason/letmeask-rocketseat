@@ -50,7 +50,8 @@ export function Room() {
         const roomRef = database.ref(`rooms/${roomId}`)
 
         // event listenner
-        roomRef.once('value', room => {
+        // on - vai ficar ouvindo toda vez que a sala receber uma nova question, ou mudar algo, e passar para a tela.
+        roomRef.on('value', room => {
             const databaseRoom = room.val()
             
             // informar o type 
