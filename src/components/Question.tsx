@@ -1,3 +1,6 @@
+// ReactNode é qualquer coisa que é aceitavel 
+import { ReactNode } from 'react';
+
 import '../styles/question.scss';
 
 type QuestionProps = {
@@ -5,13 +8,15 @@ type QuestionProps = {
     author: {
         name: string;
         avatar: string;
-    }
+    };
+    children?: ReactNode;
 }
 
 // desustruturamos para usar somente o que queremos do objeto
 export function Question({
     content,
     author,
+    children,
 }: QuestionProps) {
     return (
         <div className="question">
@@ -23,7 +28,7 @@ export function Question({
                     <img src={author.avatar} alt={author.name} />
                     <span>{author.name}</span>
                 </div>
-                <div></div>
+                <div>{children}</div>
             </footer>
         </div>
     )
